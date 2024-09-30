@@ -3,11 +3,9 @@ import "./style.css";
 
 export const App = () => {
   const [study, setStudy] = useState("");
-  const [time, setTime] = useState("");
-  const [records, setRecords] = useState([
-    { title: "りあくと", time: 1 },
-    { title: "じゃばすくりぷと", time: 3 },
-  ]);
+  const [time, setTime] = useState();
+  const [totalTime, setTotalTime] = useState(0);
+  const [records, setRecords] = useState([]);
   const [error, setError] = useState("");
 
   const onChangeStudy = (event) => {
@@ -20,9 +18,13 @@ export const App = () => {
     if (study === "" || time === "") {
       setError("入力されていない項目があります");
     } else {
-      const newRecords = [...records, { title: study, time: time }];
+      const newTime = parseFloat(time);
+      const newRecords = [...records, { title: study, time: newTime }];
+      setTotalTime(totalTime + newTime);
       setRecords(newRecords);
       setError("");
+      setStudy("");
+      setTime("");
     }
   };
 
@@ -34,7 +36,7 @@ export const App = () => {
       </div>
       <div className="flex">
         <p>学習時間</p>
-        <input type="number" onChange={onChangeTime}></input>
+        <input type="number" value={time} onChange={onChangeTime}></input>
       </div>
       <div className="flex">
         <p>入力されている学習内容:</p>
@@ -53,7 +55,7 @@ export const App = () => {
           </li>
         ))}
       </ul>
-      <p>合計時間:0/1000h</p>
+      <p>合計時間:{totalTime}/1000h</p>
     </>
   );
 };
