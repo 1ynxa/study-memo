@@ -30,13 +30,21 @@ export const App = () => {
 
   return (
     <>
-      <div className="flex">
-        <p>学習内容</p>
-        <input value={study} onChange={onChangeStudy}></input>
-      </div>
-      <div className="flex">
-        <p>学習時間</p>
-        <input type="number" value={time} onChange={onChangeTime}></input>
+      <div
+        style={{
+          backgroundColor: "lightblue",
+          padding: "10px",
+          borderRadius: "10px",
+        }}
+      >
+        <div className="flex">
+          <p>学習内容</p>
+          <input value={study} onChange={onChangeStudy}></input>
+        </div>
+        <div className="flex">
+          <p>学習時間</p>
+          <input type="number" value={time} onChange={onChangeTime}></input>
+        </div>
       </div>
       <div className="flex">
         <p>入力されている学習内容:</p>
