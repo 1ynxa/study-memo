@@ -28,6 +28,14 @@ export const App = () => {
     }
   };
 
+  const onClickDelete = (index) => {
+    const deleteRecords = [...records];
+    const deletedTime = deleteRecords[index].time;
+    deleteRecords.splice(index, 1);
+    setRecords(deleteRecords);
+    setTotalTime(totalTime - deletedTime);
+  };
+
   return (
     <>
       <div
@@ -59,7 +67,8 @@ export const App = () => {
       <ul>
         {records.map((record, index) => (
           <li key={index}>
-            {record.title}: {record.time}時間
+            {record.title}: {record.time}時間{" "}
+            <button onClick={() => onClickDelete(index)}>削除する</button>
           </li>
         ))}
       </ul>
